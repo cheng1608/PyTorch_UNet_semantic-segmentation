@@ -4,7 +4,7 @@
 ### 语义分割，使用U-Net分离背景和人物
 数据集是学校给的，很小
 
-属于是难绷之难绷，一开始照着学校给的课件做，点名[这个傻逼博客]([U-Net详解-CSDN博客](https://blog.csdn.net/weixin_55073640/article/details/123060574))，只能说**纯纯傻逼**，代码完全跑不了怎么好意思发的，浪费了一上午，先是`class Decoder`里`forward`函数的 copy and crop操作，也就是下面这部分
+属于是难绷之难绷，一开始照着学校给的课件做，点名[这个傻逼博客](https://blog.csdn.net/weixin_55073640/article/details/123060574)，只能说**纯纯傻逼**，代码完全跑不了怎么好意思发的，浪费了一上午，先是`class Decoder`里`forward`函数的 copy and crop操作，也就是下面这部分
 
 ```py
 def forward(self, high, low):
@@ -43,7 +43,7 @@ def forward(self, high, low):
 ```
 前向传播能跑出来了，结果输出时发现不对劲，一看大哥你这UNet输出怎么变成 128*128 的了？？？只能说emmmmm
 
-和助教学长反馈以后决定换一个，换成[这个]([【语义分割】unet结构和代码实现_unet模型-CSDN博客](https://blog.csdn.net/weixin_40293999/article/details/129648032))
+和助教学长反馈以后决定换一个，换成[这个](https://blog.csdn.net/weixin_40293999/article/details/129648032)
 
 换完总算能跑了，不过我不会算损失，输出是[5,2,256,256]的，mask是[5,1,256,256]的，实在不知道怎么搞，最后把输出的第二维第二个通道直接丢掉了，变成[5,256,256]，用BCEWithLogitsLoss算 ,等以后弄清楚原理再回来改改
 ```py

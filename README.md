@@ -4,7 +4,7 @@
 ### 语义分割，使用U-Net分离背景和人物
 数据集是学校给的，很小
 
-属于是难绷之难绷，一开始照着学校给的课件做，点名[这个傻逼博客](https://blog.csdn.net/weixin_55073640/article/details/123060574)，只能说**纯纯傻逼**，代码完全跑不了怎么好意思发的，浪费了一上午，先是`class Decoder`里`forward`函数的 copy and crop操作，也就是下面这部分
+一开始照着学校给的课件做，点名[这个博客](https://blog.csdn.net/weixin_55073640/article/details/123060574)，只能说**太多问题了**，完全跑不了，浪费了一上午，先是`class Decoder`里`forward`函数的 copy and crop操作，也就是下面这部分
 
 ```py
 def forward(self, high, low):
@@ -17,7 +17,7 @@ def forward(self, high, low):
     x1 = self.conv_relu(x1)#卷积走起
     return x1
 ```
- `padding`乘二是默认图像尺寸一定要一直是偶数吗我请问了，如果是奇数那pad之后还是奇数，后面cat拼接就尺寸不对应了，我跑的时候就是 256*256 的常用图像输入结果一直有如下报错：
+ `padding`乘二是默认图像尺寸一定要一直是偶数，如果是奇数那pad之后还是奇数，后面cat拼接就尺寸不对应了，我跑的时候就是 256*256 的常用图像输入结果一直有如下报错：
  
   *RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 32 but got size 31 for tensor number 1 in th*
 
@@ -41,7 +41,7 @@ def forward(self, high, low):
         x1 = self.conv_relu(x1)  # 卷积走起
         return x1
 ```
-前向传播能跑出来了，结果输出时发现不对劲，一看大哥你这UNet输出怎么变成 128*128 的了？？？只能说emmmmm
+前向传播能跑出来了，结果输出时发现不对劲，一看大哥你这UNet输出怎么变成 128*128 的了
 
 和助教学长反馈以后决定换一个，换成[这个](https://blog.csdn.net/weixin_40293999/article/details/129648032)
 

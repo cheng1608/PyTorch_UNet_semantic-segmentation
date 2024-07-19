@@ -49,7 +49,7 @@ def forward(self, high, low):
 ```py
 loss = criterion(outputs[:, 0, :, :], y.type(torch.float32).squeeze(1))
 ```
-下面是训练循环的代码，不知道为什么这个acc的算法不行，只能看看loss（其实应该用IOU评估? 不会写
+下面是训练循环的代码，不知道为什么这个用总像素点评估acc的算法不行，只能看看loss（其实评估应该用IOU? 不会写
 ```py
 Net = UNet2()
 if torch.cuda.is_available():
